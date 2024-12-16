@@ -22,6 +22,14 @@ create database Learning_Sql
  User_Name varchar(250),
  User_city varchar(250),
  )
+ 
+ create table user2
+ (
+ Id int  identity(1,1),
+ Name varchar(250),
+ city varchar(250),
+ )
+
  -------SELECT STATMENT------
  --The SELECT statement is used to select data from a database.
 
@@ -35,7 +43,13 @@ create database Learning_Sql
  ('Suraj bhai','Australia'),
  ('rahul Modi','Ahemadabad');
 
- select * from user1
+ insert into user2 (Name,city)
+ values('deep jadav','Surat'),
+ ('rahul Modi','japan'),
+ ('Suraj bhai','Australia'),
+ ('rahul Modi','Ahemadabad');
+
+ select * from user2
 
  ---where----
  --The WHERE clause is used to filter records.
@@ -128,5 +142,77 @@ select AVG(USER_ID)
 from user1
 
 --LIKE ----
+--it used to define something special parrten like character like number using where clause condtion 
+select * from user1 where USER_NAME LIKE 'deep jadav'
+
+--IN OPERATOR--
+--The IN operator allows you to specify multiple values in a WHERE clause.
+-- baslcally used for the store multiple recrods on specefic codntion 
+--this will retrun only retuen pne becuse on that specefic condtion i only have one values 
+select * from user1
+where USER_NAME IN ('deep jadav')
 
 
+--BETWEEN------
+--it returns the middle values from two condtion 
+--The BETWEEN operator is inclusive: begin and end values are included
+select * from user1 where USE3R_ID between 5 and 10
+
+---sql ALIASES---
+--it used to return the termperory name to columns to table
+--here we use the u as n alias to as temprory name 
+select u.user_id,u.User_Name 
+From user1 as u
+where User_id between 5 and 10
+
+
+
+--------------------------------------------------------SQL JOINS -------------------------------
+/*
+A JOIN clause is used to combine rows from two or more tables, based on a related column between them.
+
+*/
+
+----INNER JOIN----
+-->its used to combine rows who has same matching values 
+-->it will retrun matching names from both tables 
+
+select USER_NAME,USER_ID,Name,city from
+user1 inner join user2  on USER_NAME = Name
+
+---LEFT JOIN ----
+--left join wll retuns the values from the left side and matching the values on the right side 
+
+
+select USER_NAME,USER_ID,Name,city from
+user1 left join user2  on USER_NAME = Name
+
+
+---RIGHT JOIN ----
+--right join wll retuns the values from the right side and matching the values on the left side 
+
+select USER_NAME,USER_ID,Name,city from
+user1 right join user2  on USER_NAME = Name
+
+--FULL OUTER JOIN ----
+--it retruns all matching rows and non matching rows from both table 
+
+
+select USER_NAME,USER_ID,Name,city from
+user1 full outer join user2  on USER_NAME = Name
+
+-- SELF JOIN---
+
+--it used to join with it self were find duplicate values nd comparing rows 
+--still not understand usecase of self join 
+
+--GROUP BY STATEMENT---
+-->whoever rows has the same values that will generate the group of that values 
+-->it widly used with agaregate function
+-->if you want to use agegrgate function with multiple records it always define by the group by
+-->this will be stored maximum proce on assending order 
+
+select * from user1
+SELECT MAX(User_price)as user_price
+from user1 Group By user_price
+Order by user_price ASC

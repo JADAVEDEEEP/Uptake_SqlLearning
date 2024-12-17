@@ -1,0 +1,625 @@
+---------------------------------------------------------------------------CMD HARCORTED COPY OF EXECUTION QUERYS WITH OUTPUT---------------------------------------------------------------
+
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 23
+Server version: 8.0.35 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database Student;
+ERROR 1007 (HY000): Can't create database 'student'; database exists
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| demodb             |
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| sys                |
++--------------------+
+6 rows in set (0.02 sec)
+
+mysql> create database Employee
+    -> Employee
+    -> ^C
+mysql> create database
+    -> Employes;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use Employee;
+ERROR 1049 (42000): Unknown database 'employee'
+mysql> use Employes;
+Database changed
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| demodb             |
+| employes           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| sys                |
++--------------------+
+7 rows in set (0.01 sec)
+
+mysql> create database Bank;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use Bankl
+ERROR 1049 (42000): Unknown database 'bankl'
+mysql> use Bank;
+Database changed
+mysql> create table Employes(
+    -> E_id varchar(6),
+    -> Name varchar(20),
+    -> city varchar(15),
+    -> state varchar(15));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc Employes;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| E_id  | varchar(6)  | YES  |     | NULL    |       |
+| Name  | varchar(20) | YES  |     | NULL    |       |
+| city  | varchar(15) | YES  |     | NULL    |       |
+| state | varchar(15) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> create table Department(
+    -> d_name varchar(20),
+    -> d_id int,
+    -> d_Address varchar(20))
+    -> d_phonenumber int(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'd_phonenumber int(20))' at line 5
+mysql> create table Department(
+    -> d_id int,
+    -> d_name varchar(20),
+    -> d_Address varchar(20));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc Department;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| d_id      | int         | YES  |     | NULL    |       |
+| d_name    | varchar(20) | YES  |     | NULL    |       |
+| d_Address | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> insert into Department values(1,'Cashier','Ahemdabad');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> desc Department;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| d_id      | int         | YES  |     | NULL    |       |
+| d_name    | varchar(20) | YES  |     | NULL    |       |
+| d_Address | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from Department
+    -> select * from Department;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from Department' at line 2
+mysql> select  from Department;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from Department' at line 1select  from Department;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from Department' at line 1
+mysql> select * from Department;
++------+---------+-----------+
+| d_id | d_name  | d_Address |
++------+---------+-----------+
+|    1 | Cashier | Ahemdabad |
++------+---------+-----------+
+1 row in set (0.00 sec)
+
+mysql> insert into Employes values (1,'deep',^A^C
+mysql> insert into Employes Values(1,'deep','surat','gujrat');
+Query OK, 1 row affected (0.09 sec)
+
+mysql> select * from Employes
+    -> select * from Employes;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from Employes' at line 2
+mysql> select * from Employes;
++------+------+-------+--------+
+| E_id | Name | city  | state  |
++------+------+-------+--------+
+| 1    | deep | surat | gujrat |
++------+------+-------+--------+
+1 row in set (0.01 sec)
+
+mysql> update Eamployes set Name='janik sir' where E_id=1;
+ERROR 1146 (42S02): Table 'bank.eamployes' doesn't exist
+mysql> update Eamployes set Name='janik sir' where E_id=1;
+ERROR 1146 (42S02): Table 'bank.eamployes' doesn't exist
+mysql> update Employes set Name='janik sir' where E_id=1;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Employes;
++------+-----------+-------+--------+
+| E_id | Name      | city  | state  |
++------+-----------+-------+--------+
+| 1    | janik sir | surat | gujrat |
++------+-----------+-------+--------+
+1 row in set (0.00 sec)
+
+mysql> delete from Employes where E_id=1;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from Employes
+    -> select * from Employes;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from Employes' at line 2
+mysql> select * from Employes;
+Empty set (0.00 sec)
+
+mysql> insert into Employes Values(1,'deep','surat','gujrat');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from Employes
+    -> select * from Employes;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from Employes' at line 2
+mysql> select * from Employes;
++------+------+-------+--------+
+| E_id | Name | city  | state  |
++------+------+-------+--------+
+| 1    | deep | surat | gujrat |
++------+------+-------+--------+
+1 row in set (0.01 sec)
+
+mysql> drop table Department;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> selct * from Department
+    -> selct * from Department;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selct * from Department
+selct * from Department' at line 1
+mysql> selct * from Department;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selct * from Department' at line 1
+mysql> show datbasesl
+    -> show datbases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'datbasesl
+show datbases' at line 1
+mysql> show datbases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'datbases' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| bank               |
+| demodb             |
+| employes           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| sys                |
++--------------------+
+8 rows in set (0.03 sec)
+
+mysql> drop database demodb;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| bank               |
+| employes           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| sys                |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql>  alter table Employes add E_phone int;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from Employes;
++------+------+-------+--------+---------+
+| E_id | Name | city  | state  | E_phone |
++------+------+-------+--------+---------+
+| 1    | deep | surat | gujrat |    NULL |
++------+------+-------+--------+---------+
+1 row in set (0.01 sec)
+
+mysql> TRUNCATE TABLE Department;
+ERROR 1146 (42S02): Table 'bank.department' doesn't exist
+mysql> TRUNCATE TABLE Employes;
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> select * from Employes;
+Empty set (0.01 sec)
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql>  select * from Employes where E_id=1;
+Empty set (0.04 sec)
+
+mysql> select * from Employes;
+Empty set (0.00 sec)
+
+mysql> insert into Employes Values(1,'deep','surat','gujrat');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into Employes Values(2,'deep','surat','gujrat');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into Employes Value(2,'deep','surat','gujrat');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into Employes Value(2,'deep','surat','gujrat');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into Employes Values(2,'deep','surat','gujrat');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> cls
+    -> cls;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'cls
+cls' at line 1
+mysql> insert into Employes Values(2,'deep','surat','gujrat');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into Employes Values(1,'deep','surat','gujrat');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> select * from Employes;
+Empty set (0.00 sec)
+
+mysql> insert into Employes Values(1,'deep','surat','gujrat',9586281758);
+ERROR 1264 (22003): Out of range value for column 'E_phone' at row 1
+mysql> insert into Employes Values(1,'deep','surat','gujrat','9586281758');
+ERROR 1264 (22003): Out of range value for column 'E_phone' at row 1
+mysql> insert into Employes Values(1,'deep','surat','gujrat',+91);
+Query OK, 1 row affected (0.03 sec)
+
+mysql>  select * from Employes where E_id=1;
++------+------+-------+--------+---------+
+| E_id | Name | city  | state  | E_phone |
++------+------+-------+--------+---------+
+| 1    | deep | surat | gujrat |      91 |
++------+------+-------+--------+---------+
+1 row in set (0.00 sec)
+
+mysql> insert into Employes Values(2,'deep','surat','gujrat',92);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Employes Values(3,'deep','surat','gujrat',92);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Employes Values(4,'deep','surat','gujrat',92);
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  select * from Employes ORDER BY E_id;
++------+------+-------+--------+---------+
+| E_id | Name | city  | state  | E_phone |
++------+------+-------+--------+---------+
+| 1    | deep | surat | gujrat |      91 |
+| 2    | deep | surat | gujrat |      92 |
+| 3    | deep | surat | gujrat |      92 |
+| 4    | deep | surat | gujrat |      92 |
++------+------+-------+--------+---------+
+4 rows in set (0.01 sec)
+
+mysql> select * from Employes where Name like 'deep' And E_id=1;
++------+------+-------+--------+---------+
+| E_id | Name | city  | state  | E_phone |
++------+------+-------+--------+---------+
+| 1    | deep | surat | gujrat |      91 |
++------+------+-------+--------+---------+
+1 row in set (0.01 sec)
+
+mysql> select * from Employes where Name like 'deep' or E_id=2;
++------+------+-------+--------+---------+
+| E_id | Name | city  | state  | E_phone |
++------+------+-------+--------+---------+
+| 1    | deep | surat | gujrat |      91 |
+| 2    | deep | surat | gujrat |      92 |
+| 3    | deep | surat | gujrat |      92 |
+| 4    | deep | surat | gujrat |      92 |
++------+------+-------+--------+---------+
+4 rows in set (0.00 sec)
+
+mysql> update Employes set Name='janik sir' where E_id=1;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Employes where Name like 'janik sir' or E_id=2;
++------+-----------+-------+--------+---------+
+| E_id | Name      | city  | state  | E_phone |
++------+-----------+-------+--------+---------+
+| 1    | janik sir | surat | gujrat |      91 |
+| 2    | deep      | surat | gujrat |      92 |
++------+-----------+-------+--------+---------+
+2 rows in set (0.00 sec)
+
+mysql> alter table Employes add price int ;
+Query OK, 0 rows affected (0.14 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into Employes Values(4,'deep','surat','gujrat',92,130);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Employes Values(4,'deep','surat','gujrat',92,140);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Employes Values(4,'deep','surat','gujrat',92,150);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Employes Values(4,'deep','surat','gujrat',92,170);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select min(price) from Employes;
++------------+
+| min(price) |
++------------+
+|        130 |
++------------+
+1 row in set (0.01 sec)
+
+mysql> select max(price) from Employes;
++------------+
+| max(price) |
++------------+
+|        170 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select Count(E_id) from Employes;
++-------------+
+| Count(E_id) |
++-------------+
+|           8 |
++-------------+
+1 row in set (0.01 sec)
+
+mysql> select sum(price) from Employes;
++------------+
+| sum(price) |
++------------+
+|        590 |
++------------+
+1 row in set (0.01 sec)
+
+mysql> select avg(price) from Employes;
++------------+
+| avg(price) |
++------------+
+|   147.5000 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select * from Employes where Name LIKE 'deep';
++------+------+-------+--------+---------+-------+
+| E_id | Name | city  | state  | E_phone | price |
++------+------+-------+--------+---------+-------+
+| 2    | deep | surat | gujrat |      92 |  NULL |
+| 3    | deep | surat | gujrat |      92 |  NULL |
+| 4    | deep | surat | gujrat |      92 |  NULL |
+| 4    | deep | surat | gujrat |      92 |   130 |
+| 4    | deep | surat | gujrat |      92 |   140 |
+| 4    | deep | surat | gujrat |      92 |   150 |
+| 4    | deep | surat | gujrat |      92 |   170 |
++------+------+-------+--------+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select * from Employes where price bwtween 130 and 170;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'bwtween 130 and 170' at line 1
+mysql> select * from Employes where price between 130 and 170;
++------+------+-------+--------+---------+-------+
+| E_id | Name | city  | state  | E_phone | price |
++------+------+-------+--------+---------+-------+
+| 4    | deep | surat | gujrat |      92 |   130 |
+| 4    | deep | surat | gujrat |      92 |   140 |
+| 4    | deep | surat | gujrat |      92 |   150 |
+| 4    | deep | surat | gujrat |      92 |   170 |
++------+------+-------+--------+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from Employes where price= between 130 and 170;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'between 130 and 170' at line 1
+mysql> select * from Employes where price between 130 and 150;
++------+------+-------+--------+---------+-------+
+| E_id | Name | city  | state  | E_phone | price |
++------+------+-------+--------+---------+-------+
+| 4    | deep | surat | gujrat |      92 |   130 |
+| 4    | deep | surat | gujrat |      92 |   140 |
+| 4    | deep | surat | gujrat |      92 |   150 |
++------+------+-------+--------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from Employes ;
++------+-----------+-------+--------+---------+-------+
+| E_id | Name      | city  | state  | E_phone | price |
++------+-----------+-------+--------+---------+-------+
+| 1    | janik sir | surat | gujrat |      91 |  NULL |
+| 2    | deep      | surat | gujrat |      92 |  NULL |
+| 3    | deep      | surat | gujrat |      92 |  NULL |
+| 4    | deep      | surat | gujrat |      92 |  NULL |
+| 4    | deep      | surat | gujrat |      92 |   130 |
+| 4    | deep      | surat | gujrat |      92 |   140 |
+| 4    | deep      | surat | gujrat |      92 |   150 |
+| 4    | deep      | surat | gujrat |      92 |   170 |
++------+-----------+-------+--------+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> select * from Employes where price between 130 and 170;
++------+------+-------+--------+---------+-------+
+| E_id | Name | city  | state  | E_phone | price |
++------+------+-------+--------+---------+-------+
+| 4    | deep | surat | gujrat |      92 |   130 |
+| 4    | deep | surat | gujrat |      92 |   140 |
+| 4    | deep | surat | gujrat |      92 |   150 |
+| 4    | deep | surat | gujrat |      92 |   170 |
++------+------+-------+--------+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc Department;
+ERROR 1146 (42S02): Table 'bank.department' doesn't exist
+mysql> create table Department(
+    -> d_id int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> d_id int,
+    -> d_Name varchar(20)
+    -> d_city varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'd_id int,
+d_Name varchar(20)
+d_city varchar(20))' at line 1
+mysql> d_city varchar(14));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'd_city varchar(14))' at line 1
+mysql> d_city varchar(14);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'd_city varchar(14)' at line 1
+mysql> d_city varchar(14));^C
+mysql> y
+    -> ^C
+mysql> create table Department(
+    -> d_id int,
+    -> d_city varchar(14),
+    -> d_Name varchar(20));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> insert into Department values(1,'SURAT','DEPARTMENT');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into Department values(1,'AHEMDABAD','HR');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Department values(1,'LA','CASHIER');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Deparment;
+ERROR 1146 (42S02): Table 'bank.deparment' doesn't exist
+mysql> select * from Deparment;
+ERROR 1146 (42S02): Table 'bank.deparment' doesn't exist
+mysql> select * from Department;
++------+-----------+------------+
+| d_id | d_city    | d_Name     |
++------+-----------+------------+
+|    1 | SURAT     | DEPARTMENT |
+|    1 | AHEMDABAD | HR         |
+|    1 | LA        | CASHIER    |
++------+-----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from Employes;
++------+-----------+-------+--------+---------+-------+
+| E_id | Name      | city  | state  | E_phone | price |
++------+-----------+-------+--------+---------+-------+
+| 1    | janik sir | surat | gujrat |      91 |  NULL |
+| 2    | deep      | surat | gujrat |      92 |  NULL |
+| 3    | deep      | surat | gujrat |      92 |  NULL |
+| 4    | deep      | surat | gujrat |      92 |  NULL |
+| 4    | deep      | surat | gujrat |      92 |   130 |
+| 4    | deep      | surat | gujrat |      92 |   140 |
+| 4    | deep      | surat | gujrat |      92 |   150 |
+| 4    | deep      | surat | gujrat |      92 |   170 |
++------+-----------+-------+--------+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> select d,d.name,e
+    -> ^C
+mysql> select d_Name,Name,city,state,price from Employes inner join Department where E_id = s_id;
+ERROR 1054 (42S22): Unknown column 's_id' in 'where clause'
+mysql> select d_Name,Name,city,state,price from Employes inner join Department where E_id = d_id;
++------------+-----------+-------+--------+-------+
+| d_Name     | Name      | city  | state  | price |
++------------+-----------+-------+--------+-------+
+| CASHIER    | janik sir | surat | gujrat |  NULL |
+| HR         | janik sir | surat | gujrat |  NULL |
+| DEPARTMENT | janik sir | surat | gujrat |  NULL |
++------------+-----------+-------+--------+-------+
+3 rows in set (0.01 sec)
+
+mysql> select d_Name,Name,city,state,price from Employes right join Department where E_id = d_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where E_id = d_id' at line 1
+mysql> select d_Name,Name,city,state,price from Employes right join Department where E_id = d_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where E_id = d_id' at line 1
+mysql> select d_Name,Name,city,state,price from Employes inner join Department;
++------------+-----------+-------+--------+-------+
+| d_Name     | Name      | city  | state  | price |
++------------+-----------+-------+--------+-------+
+| CASHIER    | janik sir | surat | gujrat |  NULL |
+| HR         | janik sir | surat | gujrat |  NULL |
+| DEPARTMENT | janik sir | surat | gujrat |  NULL |
+| CASHIER    | deep      | surat | gujrat |  NULL |
+| HR         | deep      | surat | gujrat |  NULL |
+| DEPARTMENT | deep      | surat | gujrat |  NULL |
+| CASHIER    | deep      | surat | gujrat |  NULL |
+| HR         | deep      | surat | gujrat |  NULL |
+| DEPARTMENT | deep      | surat | gujrat |  NULL |
+| CASHIER    | deep      | surat | gujrat |  NULL |
+| HR         | deep      | surat | gujrat |  NULL |
+| DEPARTMENT | deep      | surat | gujrat |  NULL |
+| CASHIER    | deep      | surat | gujrat |   130 |
+| HR         | deep      | surat | gujrat |   130 |
+| DEPARTMENT | deep      | surat | gujrat |   130 |
+| CASHIER    | deep      | surat | gujrat |   140 |
+| HR         | deep      | surat | gujrat |   140 |
+| DEPARTMENT | deep      | surat | gujrat |   140 |
+| CASHIER    | deep      | surat | gujrat |   150 |
+| HR         | deep      | surat | gujrat |   150 |
+| DEPARTMENT | deep      | surat | gujrat |   150 |
+| CASHIER    | deep      | surat | gujrat |   170 |
+| HR         | deep      | surat | gujrat |   170 |
+| DEPARTMENT | deep      | surat | gujrat |   170 |
++------------+-----------+-------+--------+-------+
+24 rows in set (0.00 sec)
+
+mysql> select d_Name,Name,city,state,price from Employes right join Department;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select d_Name,Name,city,state,price from Employes right join Department on E_id = d_id;
++------------+-----------+-------+--------+-------+
+| d_Name     | Name      | city  | state  | price |
++------------+-----------+-------+--------+-------+
+| DEPARTMENT | janik sir | surat | gujrat |  NULL |
+| HR         | janik sir | surat | gujrat |  NULL |
+| CASHIER    | janik sir | surat | gujrat |  NULL |
++------------+-----------+-------+--------+-------+
+3 rows in set (0.01 sec)
+
+mysql> select d_Name,Name,city,state,price from Employes left join Department on E_id = d_id;
++------------+-----------+-------+--------+-------+
+| d_Name     | Name      | city  | state  | price |
++------------+-----------+-------+--------+-------+
+| CASHIER    | janik sir | surat | gujrat |  NULL |
+| HR         | janik sir | surat | gujrat |  NULL |
+| DEPARTMENT | janik sir | surat | gujrat |  NULL |
+| NULL       | deep      | surat | gujrat |  NULL |
+| NULL       | deep      | surat | gujrat |  NULL |
+| NULL       | deep      | surat | gujrat |  NULL |
+| NULL       | deep      | surat | gujrat |   130 |
+| NULL       | deep      | surat | gujrat |   140 |
+| NULL       | deep      | surat | gujrat |   150 |
+| NULL       | deep      | surat | gujrat |   170 |
++------------+-----------+-------+--------+-------+
+10 rows in set (0.00 sec)
+
+mysql> select d_Name,Name,city,state,price from Employes full join Department on E_id = d_id;
++------------+-----------+-------+--------+-------+
+| d_Name     | Name      | city  | state  | price |
++------------+-----------+-------+--------+-------+
+| CASHIER    | janik sir | surat | gujrat |  NULL |
+| HR         | janik sir | surat | gujrat |  NULL |
+| DEPARTMENT | janik sir | surat | gujrat |  NULL |
++------------+-----------+-------+--------+-------+
+3 rows in set, 1 warning (0.02 sec)
+
+
+
+
+

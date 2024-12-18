@@ -1,0 +1,833 @@
+
+----------------------------------------------------------------------------------------------DAY 2 HARDCORTED COPY OF CMD FILE -----------------------------------------------------------
+
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 27
+Server version: 8.0.35 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| bank               |
+| employes           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| sys                |
++--------------------+
+7 rows in set (0.02 sec)
+
+mysql> use bank;
+Database changed
+mysql> select * from Employes
+    -> select * from Employes;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from Employes' at line 2
+mysql> select * from Employes;
++------+-----------+-------+--------+---------+-------+
+| E_id | Name      | city  | state  | E_phone | price |
++------+-----------+-------+--------+---------+-------+
+| 1    | janik sir | surat | gujrat |      91 |  NULL |
+| 2    | deep      | surat | gujrat |      92 |  NULL |
+| 3    | deep      | surat | gujrat |      92 |  NULL |
+| 4    | deep      | surat | gujrat |      92 |  NULL |
+| 4    | deep      | surat | gujrat |      92 |   130 |
+| 4    | deep      | surat | gujrat |      92 |   140 |
+| 4    | deep      | surat | gujrat |      92 |   150 |
+| 4    | deep      | surat | gujrat |      92 |   170 |
++------+-----------+-------+--------+---------+-------+
+8 rows in set (0.01 sec)
+
+mysql> select *b from Department;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'b from Department' at line 1
+mysql> select * from Department;
++------+-----------+------------+
+| d_id | d_city    | d_Name     |
++------+-----------+------------+
+|    1 | SURAT     | DEPARTMENT |
+|    1 | AHEMDABAD | HR         |
+|    1 | LA        | CASHIER    |
++------+-----------+------------+
+3 rows in set (0.01 sec)
+
+mysql> select * from Employes where Name union select * from Department where d_city;
+ERROR 1222 (21000): The used SELECT statements have a different number of columns
+mysql> select from Name where Name union select from d_city from Department;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from Name where Name union select from d_city from Department' at line 1
+mysql> select Name from Employes union select d_city from Department;
++-----------+
+| Name      |
++-----------+
+| janik sir |
+| deep      |
+| SURAT     |
+| AHEMDABAD |
+| LA        |
++-----------+
+5 rows in set (0.01 sec)
+
+mysql> select E_id ,price,
+    -> case when price > 130 then 'the price is greater'
+    -> when price =130 then 'the price is 130'
+    -> else 'ther price is under 130'
+    -> end);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 5
+mysql> select E_id ,price,
+    -> case when price > 130 then 'the price is greater',
+    -> when price =130 then 'the price is 130',
+    -> else 'ther price is under 130',
+    -> end);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+when price =130 then 'the price is 130',
+else 'ther price is under 130',
+end)' at line 2
+mysql> SELECT E_id, price,
+    ->     CASE
+    ->         WHEN price > 130 THEN 'the price is greater'
+    ->         WHEN price = 130 THEN 'the price is 130'
+    ->         ELSE 'the price is under 130'
+    ->     END
+    -> FROM Employes;
++------+-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| E_id | price | CASE
+        WHEN price > 130 THEN 'the price is greater'
+        WHEN price = 130 THEN 'the price is 130'
+        ELSE 'the price is under 130'
+    END |
++------+-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 1    |  NULL | the price is under 130
+
+ |
+| 2    |  NULL | the price is under 130
+
+ |
+| 3    |  NULL | the price is under 130
+
+ |
+| 4    |  NULL | the price is under 130
+
+ |
+| 4    |   130 | the price is 130
+
+ |
+| 4    |   140 | the price is greater
+
+ |
+| 4    |   150 | the price is greater
+
+ |
+| 4    |   170 | the price is greater
+
+ |
++------+-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+8 rows in set (0.01 sec)
+
+mysql> select case
+    -> select 30+20;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select 30+20' at line 2
+mysql> select 30+20;
++-------+
+| 30+20 |
++-------+
+|    50 |
++-------+
+1 row in set (0.01 sec)
+
+mysql> select 30-20;
++-------+
+| 30-20 |
++-------+
+|    10 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select 30*20;
++-------+
+| 30*20 |
++-------+
+|   600 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select 30/20;
++--------+
+| 30/20  |
++--------+
+| 1.5000 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select 30%20;
++-------+
+| 30%20 |
++-------+
+|    10 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select * from Employes where price >130;
++------+------+-------+--------+---------+-------+
+| E_id | Name | city  | state  | E_phone | price |
++------+------+-------+--------+---------+-------+
+| 4    | deep | surat | gujrat |      92 |   140 |
+| 4    | deep | surat | gujrat |      92 |   150 |
+| 4    | deep | surat | gujrat |      92 |   170 |
++------+------+-------+--------+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> select * from Employes where price =130;
++------+------+-------+--------+---------+-------+
+| E_id | Name | city  | state  | E_phone | price |
++------+------+-------+--------+---------+-------+
+| 4    | deep | surat | gujrat |      92 |   130 |
++------+------+-------+--------+---------+-------+
+1 row in set (0.01 sec)
+
+mysql> select * from Employes where price <170;
++------+------+-------+--------+---------+-------+
+| E_id | Name | city  | state  | E_phone | price |
++------+------+-------+--------+---------+-------+
+| 4    | deep | surat | gujrat |      92 |   130 |
+| 4    | deep | surat | gujrat |      92 |   140 |
+| 4    | deep | surat | gujrat |      92 |   150 |
++------+------+-------+--------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from Employes where price <=170;
++------+------+-------+--------+---------+-------+
+| E_id | Name | city  | state  | E_phone | price |
++------+------+-------+--------+---------+-------+
+| 4    | deep | surat | gujrat |      92 |   130 |
+| 4    | deep | surat | gujrat |      92 |   140 |
+| 4    | deep | surat | gujrat |      92 |   150 |
+| 4    | deep | surat | gujrat |      92 |   170 |
++------+------+-------+--------+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from Employes where price >=170;
++------+------+-------+--------+---------+-------+
+| E_id | Name | city  | state  | E_phone | price |
++------+------+-------+--------+---------+-------+
+| 4    | deep | surat | gujrat |      92 |   170 |
++------+------+-------+--------+---------+-------+
+1 row in set (0.01 sec)
+
+mysql> select * from Employes where price <>170;
++------+------+-------+--------+---------+-------+
+| E_id | Name | city  | state  | E_phone | price |
++------+------+-------+--------+---------+-------+
+| 4    | deep | surat | gujrat |      92 |   130 |
+| 4    | deep | surat | gujrat |      92 |   140 |
+| 4    | deep | surat | gujrat |      92 |   150 |
++------+------+-------+--------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table Employes add Pincode int;
+Query OK, 0 rows affected (0.25 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from Employes;
++------+-----------+-------+--------+---------+-------+---------+
+| E_id | Name      | city  | state  | E_phone | price | Pincode |
++------+-----------+-------+--------+---------+-------+---------+
+| 1    | janik sir | surat | gujrat |      91 |  NULL |    NULL |
+| 2    | deep      | surat | gujrat |      92 |  NULL |    NULL |
+| 3    | deep      | surat | gujrat |      92 |  NULL |    NULL |
+| 4    | deep      | surat | gujrat |      92 |  NULL |    NULL |
+| 4    | deep      | surat | gujrat |      92 |   130 |    NULL |
+| 4    | deep      | surat | gujrat |      92 |   140 |    NULL |
+| 4    | deep      | surat | gujrat |      92 |   150 |    NULL |
+| 4    | deep      | surat | gujrat |      92 |   170 |    NULL |
++------+-----------+-------+--------+---------+-------+---------+
+8 rows in set (0.00 sec)
+
+mysql> alter table Employes Modify column Pincode varchar(20);
+Query OK, 8 rows affected (0.18 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> alter table Employes drop column Pincode;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from Employes;
++------+-----------+-------+--------+---------+-------+
+| E_id | Name      | city  | state  | E_phone | price |
++------+-----------+-------+--------+---------+-------+
+| 1    | janik sir | surat | gujrat |      91 |  NULL |
+| 2    | deep      | surat | gujrat |      92 |  NULL |
+| 3    | deep      | surat | gujrat |      92 |  NULL |
+| 4    | deep      | surat | gujrat |      92 |  NULL |
+| 4    | deep      | surat | gujrat |      92 |   130 |
+| 4    | deep      | surat | gujrat |      92 |   140 |
+| 4    | deep      | surat | gujrat |      92 |   150 |
+| 4    | deep      | surat | gujrat |      92 |   170 |
++------+-----------+-------+--------+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> create table Marvel(
+    -> m_id int NOT NULL,
+    -> M_name varchar(20),
+    -> PRIMARY KEY (m_id));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table ironman(
+    -> suit_no int,
+    -> m_id int,
+    -> suit
+    -> end;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'end' at line 5
+mysql> create table ironman(
+    -> m_id int,
+    -> primary key(m_id
+    -> /
+    -> end
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '/
+end' at line 4
+mysql> create table ironman(
+    -> suit_id int,
+    -> primary key(suit_id),
+    -> m_id int,
+    -> foreign key(m_id)REFERENCES Marvel(m_id));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc Marvel;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| m_id   | int         | NO   | PRI | NULL    |       |
+| M_name | varchar(20) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+2 rows in set (0.03 sec)
+
+mysql> desc ironman;
++---------+------+------+-----+---------+-------+
+| Field   | Type | Null | Key | Default | Extra |
++---------+------+------+-----+---------+-------+
+| suit_id | int  | NO   | PRI | NULL    |       |
+| m_id    | int  | YES  | MUL | NULL    |       |
++---------+------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> create index idx_name on Employes(Name,city);
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from idx_name;
+ERROR 1146 (42S02): Table 'bank.idx_name' doesn't exist
+mysql> create index idx_name on Employes(E_id,Name,city);
+ERROR 1061 (42000): Duplicate key name 'idx_name'
+mysql> create index idx_born on Employes(E_id,Name,city);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> drop table ironman;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc datbases;
+ERROR 1146 (42S02): Table 'bank.datbases' doesn't exist
+mysql> show datbases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'datbases' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| bank               |
+| employes           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| sys                |
++--------------------+
+7 rows in set (0.01 sec)
+
+mysql> create table ironman(
+    -> i_id int AUTO_INCREMENT,
+    -> name varchar(20));
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+mysql> create table ironman(
+    -> i_id int AUTO_INCREMENT,
+    -> primary key(i_id),
+    -> name varchar(20));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into ironman values('deep');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into ironman values(1,'deep');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into ironman values('deep');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into ironman values(2,'deep');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into ironman ('deep');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''deep')' at line 1
+mysql> insert into ironman values ('deep');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into ironman values ('rahul');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql>  CREATE TABLE users (
+    ->
+    ->         id INT AUTO_INCREMENT PRIMARY KEY,
+    ->
+    ->         username VARCHAR(255)
+    ->
+    ->     );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> insert into users values('rahul');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> drop table users;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select * from ironman;
++------+------+
+| i_id | name |
++------+------+
+|    1 | deep |
+|    2 | deep |
++------+------+
+2 rows in set (0.00 sec)
+
+mysql> insert into ironman values('sohan');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into ironman values(3,'sohan');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from ironman;
++------+-------+
+| i_id | name  |
++------+-------+
+|    1 | deep  |
+|    2 | deep  |
+|    3 | sohan |
++------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table Employes add month date;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from Employes;
++------+-----------+-------+--------+---------+-------+-------+
+| E_id | Name      | city  | state  | E_phone | price | month |
++------+-----------+-------+--------+---------+-------+-------+
+| 1    | janik sir | surat | gujrat |      91 |  NULL | NULL  |
+| 2    | deep      | surat | gujrat |      92 |  NULL | NULL  |
+| 3    | deep      | surat | gujrat |      92 |  NULL | NULL  |
+| 4    | deep      | surat | gujrat |      92 |  NULL | NULL  |
+| 4    | deep      | surat | gujrat |      92 |   130 | NULL  |
+| 4    | deep      | surat | gujrat |      92 |   140 | NULL  |
+| 4    | deep      | surat | gujrat |      92 |   150 | NULL  |
+| 4    | deep      | surat | gujrat |      92 |   170 | NULL  |
++------+-----------+-------+--------+---------+-------+-------+
+8 rows in set (0.00 sec)
+
+mysql> insert into the Employes(5,'28-11-2024');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Employes(5,'28-11-2024')' at line 1
+mysql> insert into Employes values(5,'28-11-2024');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into Employes values(5,'raj sir','England','uk',94,50,'28-11-2024');
+ERROR 1292 (22007): Incorrect date value: '28-11-2024' for column 'month' at row 1
+mysql> insert into Employes values(5,'raj sir','England','uk',94,50,'2024-12-18');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Employes values(5,'raj sir','England','uk',94,50,'2024-12-19');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Employes values(5,'raj sir','England','uk',94,50,'2024-12-20');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from Employes;
++------+-----------+---------+--------+---------+-------+------------+
+| E_id | Name      | city    | state  | E_phone | price | month      |
++------+-----------+---------+--------+---------+-------+------------+
+| 1    | janik sir | surat   | gujrat |      91 |  NULL | NULL       |
+| 2    | deep      | surat   | gujrat |      92 |  NULL | NULL       |
+| 3    | deep      | surat   | gujrat |      92 |  NULL | NULL       |
+| 4    | deep      | surat   | gujrat |      92 |  NULL | NULL       |
+| 4    | deep      | surat   | gujrat |      92 |   130 | NULL       |
+| 4    | deep      | surat   | gujrat |      92 |   140 | NULL       |
+| 4    | deep      | surat   | gujrat |      92 |   150 | NULL       |
+| 4    | deep      | surat   | gujrat |      92 |   170 | NULL       |
+| 5    | raj sir   | England | uk     |      94 |    50 | 2024-12-18 |
+| 5    | raj sir   | England | uk     |      94 |    50 | 2024-12-19 |
+| 5    | raj sir   | England | uk     |      94 |    50 | 2024-12-20 |
++------+-----------+---------+--------+---------+-------+------------+
+11 rows in set (0.00 sec)
+
+mysql> create view example as
+    -> ^C
+mysql>
+mysql> select * from Employes;
++------+-----------+---------+--------+---------+-------+------------+
+| E_id | Name      | city    | state  | E_phone | price | month      |
++------+-----------+---------+--------+---------+-------+------------+
+| 1    | janik sir | surat   | gujrat |      91 |  NULL | NULL       |
+| 2    | deep      | surat   | gujrat |      92 |  NULL | NULL       |
+| 3    | deep      | surat   | gujrat |      92 |  NULL | NULL       |
+| 4    | deep      | surat   | gujrat |      92 |  NULL | NULL       |
+| 4    | deep      | surat   | gujrat |      92 |   130 | NULL       |
+| 4    | deep      | surat   | gujrat |      92 |   140 | NULL       |
+| 4    | deep      | surat   | gujrat |      92 |   150 | NULL       |
+| 4    | deep      | surat   | gujrat |      92 |   170 | NULL       |
+| 5    | raj sir   | England | uk     |      94 |    50 | 2024-12-18 |
+| 5    | raj sir   | England | uk     |      94 |    50 | 2024-12-19 |
+| 5    | raj sir   | England | uk     |      94 |    50 | 2024-12-20 |
++------+-----------+---------+--------+---------+-------+------------+
+11 rows in set (0.02 sec)
+
+mysql> select * from Department;
++------+-----------+------------+
+| d_id | d_city    | d_Name     |
++------+-----------+------------+
+|    1 | SURAT     | DEPARTMENT |
+|    1 | AHEMDABAD | HR         |
+|    1 | LA        | CASHIER    |
++------+-----------+------------+
+3 rows in set (0.01 sec)
+
+mysql> create view Example_Data As
+    -> select Name,city,d_city,d_Name from Employes inner join Department where E_id = d_id;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select
+    -> ^C
+mysql> select * from  Example_Data;
++-----------+-------+-----------+------------+
+| Name      | city  | d_city    | d_Name     |
++-----------+-------+-----------+------------+
+| janik sir | surat | LA        | CASHIER    |
+| janik sir | surat | AHEMDABAD | HR         |
+| janik sir | surat | SURAT     | DEPARTMENT |
++-----------+-------+-----------+------------+
+3 rows in set (0.01 sec)
+
+mysql> create function add_num(a int ,b int)returns int
+    -> begin
+    -> retrun a+b;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'a+b' at line 3
+mysql> create function add_num(a int ,b int)returns int
+    -> begin
+    -> retrun a+b,
+    -> end;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'a+b,
+end' at line 3
+mysql> CREATE FUNCTION calculate_price_with_tax (price DECIMAL(10,2), tax_rate DECIMAL(5,2))
+    ->
+    -> RETURNS DECIMAL(10,2)
+    ->
+    -> DETERMINISTIC
+    ->
+    -> BEGIN
+    ->
+    ->   DECLARE final_price DECIMAL(10,2);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 9
+mysql>
+mysql>   SET final_price = price * (1 + tax_rate);
+ERROR 1193 (HY000): Unknown system variable 'final_price'
+mysql>
+mysql>   RETURN final_price;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURN final_price' at line 1
+mysql>
+mysql> END;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'END' at line 1
+mysql> CREATE FUNCTION calculate_price_with_tax (price DECIMAL(10,2), tax_rate DECIMAL(5,2))
+    ->
+    -> RETURNS DECIMAL(10,2)
+    ->
+    -> DETERMINISTIC
+    ->
+    -> BEGIN
+    ->
+    ->   DECLARE final_price DECIMAL(10,2);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 9
+mysql>
+mysql>   SET final_price = price * (1 + tax_rate);
+ERROR 1193 (HY000): Unknown system variable 'final_price'
+mysql>
+mysql>   RETURN final_price;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURN final_price' at line 1
+mysql>
+mysql>
+mysql> ^C
+mysql>
+mysql> ^C
+mysql> y
+    -> ^C
+mysql>
+mysql> create function fax(@fat float)
+    -> retruns float
+    -> begin
+    -> return (@fat - 32)*5/9
+    -> end
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@fat float)
+retruns float
+begin
+return (@fat - 32)*5/9
+end' at line 1
+mysql> CREATE FUNCTION CalculateTotal
+    -> (@Price decimal(10,2),@Quantity int)
+    -> RETURNS decimal(10,2)
+    -> AS
+    -> BEGIN
+    ->    RETURN @Price * @Quantity
+    -> END
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@Price decimal(10,2),@Quantity int)
+RETURNS decimal(10,2)
+AS
+BEGIN
+   RETURN @Pr' at line 2
+mysql> create procedure View_data
+    -> as
+    -> select Name,city,d_name,d_Name from Employes inner join Department on E_id = d
+_id ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'as
+select Name,city,d_name,d_Name from Employes inner join Department on E_id = ' at line 2
+mysql> create procedure View_data
+    -> select Name,city,d_name,d_Name from Employes inner join Department on E_id = d_id
+    -> go;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select Name,city,d_name,d_Name from Employes inner join Department on E_id = d_i' at line 2
+mysql> create procedure View_data
+    -> select Name,city,d_name,d_Name from Employes inner join
+    ->  Department on E_id = d_id
+    -> go;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select Name,city,d_name,d_Name from Employes inner join
+ Department on E_id = d_' at line 2
+mysql> create procedure View_data
+    -> select Name,city,d_name,d_Name from Employes inner join
+    ->  Department on E_id = d_id
+    ->  Department on E_id = d_id ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select Name,city,d_name,d_Name from Employes inner join
+ Department on E_id = d_' at line 2
+mysql> create procedure View_data
+    -> select Name,city,d_name,d_Name from Employes inner join
+    ->  Department where E_id = d_id ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select Name,city,d_name,d_Name from Employes inner join
+ Department where E_id =' at line 2
+mysql> create procedure View_data
+    -> select Name,city,d_name,d_Name from Employes inner join
+    ->  Department where E_id = d_id
+    -> GO;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select Name,city,d_name,d_Name from Employes inner join
+ Department where E_id =' at line 2
+mysql> CREATE PROCEDURE View_data
+    -> AS
+    -> BEGIN
+    ->     SELECT
+    ->         e.Name,
+    ->         e.City,
+    ->         d.d_name
+    ->     FROM
+    ->         Employees e
+    ->     INNER JOIN
+    ->         Department d
+    ->     ON
+    ->         e.E_id = d.d_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS
+BEGIN
+    SELECT
+        e.Name,
+        e.City,
+        d.d_name
+    FROM' at line 2
+mysql> END;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'END' at line 1
+mysql> GO
+ERROR:
+No query specified
+
+mysql> CREATE PROCEDURE View_data
+    -> AS
+    -> BEGIN
+    ->     SELECT
+    ->         e.Name,
+    ->         e.City,
+    ->         d.d_name
+    ->     FROM
+    ->         Employees e
+    ->     INNER JOIN
+    ->         Department d
+    ->     ON
+    ->         e.E_id = d.d_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS
+BEGIN
+    SELECT
+        e.Name,
+        e.City,
+        d.d_name
+    FROM' at line 2
+mysql> END;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'END' at line 1
+mysql> GO
+ERROR:
+No query specified
+
+mysql> CREATE PROCEDURE View_data
+    -> AS
+    -> BEGIN
+    ->     SELECT
+    ->         e.Name,
+    ->         e.City,
+    ->         d.d_name
+    ->     FROM
+    ->         Employees e
+    ->     INNER JOIN
+    ->         Department d
+    ->     ON
+    ->         e.E_id = d.d_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS
+BEGIN
+    SELECT
+        e.Name,
+        e.City,
+        d.d_name
+    FROM' at line 2
+mysql> create procedure View_data
+    -> as
+    -> begin
+    -> select Name.city,d_Name,d_city from Employes inner join Department on E_id = d_id
+    -> end'
+    '> go
+    '> GO;
+    '> GO;^C
+mysql> create procedure View_data
+    -> begin
+    ->         e.E_id = d.d_i^X^C
+mysql> ^Y
+    -> ^C
+mysql>
+mysql> create procedure View_data
+    -> as
+    -> begin
+    -> select Name.city,d_Name,d_city from Employes inner join Department on E_id = d_id ,
+    -> end;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'as
+begin
+select Name.city,d_Name,d_city from Employes inner join Department on E' at line 2
+mysql> create procedure all data
+    -> as
+    -> select * from Employes
+    -> go;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'all data
+as
+select * from Employes
+go' at line 1
+mysql> create procedure all_data
+    -> as
+    -> begin
+    -> select * from Employes
+    -> end;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'as
+begin
+select * from Employes
+end' at line 2
+mysql> DELIMITER $$
+mysql>
+mysql> CREATE PROCEDURE all_data()
+    -> BEGIN
+    ->     SELECT * FROM Employees;
+    -> END$$
+Query OK, 0 rows affected (0.17 sec)
+
+mysql>
+mysql> DELIMITER ;
+mysql> DELIMITER $$
+mysql>
+mysql> CREATE PROCEDURE all_data()
+    -> BEGIN
+    ->     SELECT * FROM Employes;
+    -> END$$
+ERROR 1304 (42000): PROCEDURE all_data already exists
+mysql>
+mysql> DELIMITER ;
+mysql> drop procedure all_Data();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '()' at line 1
+mysql> drop procedure all_Data()
+    -> drop procedure all_Data;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '()
+drop procedure all_Data' at line 1
+mysql> DELIMITER $$
+mysql>
+mysql> CREATE PROCEDURE data()
+    -> BEGIN
+    ->     SELECT * FROM Employes;
+    -> END$$
+Query OK, 0 rows affected (0.01 sec)
+
+mysql>
+mysql> DELIMITER ;
+mysql> call data();
++------+-----------+---------+--------+---------+-------+------------+
+| E_id | Name      | city    | state  | E_phone | price | month      |
++------+-----------+---------+--------+---------+-------+------------+
+| 1    | janik sir | surat   | gujrat |      91 |  NULL | NULL       |
+| 2    | deep      | surat   | gujrat |      92 |  NULL | NULL       |
+| 3    | deep      | surat   | gujrat |      92 |  NULL | NULL       |
+| 4    | deep      | surat   | gujrat |      92 |  NULL | NULL       |
+| 4    | deep      | surat   | gujrat |      92 |   130 | NULL       |
+| 4    | deep      | surat   | gujrat |      92 |   140 | NULL       |
+| 4    | deep      | surat   | gujrat |      92 |   150 | NULL       |
+| 4    | deep      | surat   | gujrat |      92 |   170 | NULL       |
+| 5    | raj sir   | England | uk     |      94 |    50 | 2024-12-18 |
+| 5    | raj sir   | England | uk     |      94 |    50 | 2024-12-19 |
+| 5    | raj sir   | England | uk     |      94 |    50 | 2024-12-20 |
++------+-----------+---------+--------+---------+-------+------------+
+11 rows in set (0.04 sec)
+
+Query OK, 0 rows affected (0.10 sec)
+
+mysql>  DELIMITER $$
+mysql> CREATE PROCEDURE ViewAllData()
+    -> Begin
+    -> select Name,city,d_id,d_Name from Employes inner join Department on E_id=d_id
+    -> END$$
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'END' at line 4
+mysql> DELIMITER $$
+mysql>
+mysql> CREATE PROCEDURE ViewAllData()
+    -> BEGIN
+    ->   select Name,city,d_id,d_Name from Employes inner join Department on E_id=d_id
+    -> END$$
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'END' at line 4
+mysql>
+mysql> DELIMITER ;
+mysql>
+mysql> DELIMITER $$
+mysql>
+mysql> CREATE PROCEDURE ViewAllData()
+    -> BEGIN
+    ->   select Name,city,d_id,d_Name from Employes inner join Department on E_id=d_id ;
+    -> END$$
+Query OK, 0 rows affected (0.01 sec)
+
+mysql>
+mysql> DELIMITER ;
+mysql> call ViewAllData();
++-----------+-------+------+------------+
+| Name      | city  | d_id | d_Name     |
++-----------+-------+------+------------+
+| janik sir | surat |    1 | CASHIER    |
+| janik sir | surat |    1 | HR         |
+| janik sir | surat |    1 | DEPARTMENT |
++-----------+-------+------+------------+
+3 rows in set (0.05 sec)
+
+Query OK, 0 rows affected (0.06 sec)
+
+mysql>
+

@@ -1,0 +1,218 @@
+---------------------------------------------------------------------------HARD COPY CMD QUERYS--------------------------------------------------
+
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 37
+Server version: 8.0.35 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create datbase market;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'datbase market' at line 1
+mysql> create database market;
+ERROR 1007 (HY000): Can't create database 'market'; database exists
+mysql> create database markets;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> create table Role(
+    -> Role_id int primary key,
+    -> name varchar(20));
+ERROR 1046 (3D000): No database selected
+mysql> use markets;
+Database changed
+mysql> create table Role(
+    ->     -> Role_id int primary key,
+    -> create database markets;^C
+mysql> create table Role(
+    ->     - Role_id int primary key,
+    -> ^C
+mysql> create table Role(
+    ->      Role_id int primary key,
+    -> name varchar(20));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table user(
+    -> id int primary key,
+    -> firstname varchar(20),
+    -> email varchar(25),
+    -> password int,
+    -> Role_id int,
+    ->  FOREIGN KEY (Role_id) REFERENCES Role(Role_id));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc user;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| id        | int         | NO   | PRI | NULL    |       |
+| firstname | varchar(20) | YES  |     | NULL    |       |
+| email     | varchar(25) | YES  |     | NULL    |       |
+| password  | int         | YES  |     | NULL    |       |
+| Role_id   | int         | YES  | MUL | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> create table store_owner(
+    -> s_id int primary key,
+    -> ^C
+mysql> create table customer(
+    -> c_id
+    -> c_id^C
+mysql> create table customer(
+    -> c_id int primary key,
+    -> id int,
+    -> adress varchar(20),
+    ->  FOREIGN KEY (id) REFERENCES user(id));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc customerl
+    -> desc customer;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc customer' at line 2
+mysql> desc customer;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| c_id   | int         | NO   | PRI | NULL    |       |
+| id     | int         | YES  | MUL | NULL    |       |
+| adress | varchar(20) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> create table store_owner(
+    -> s_id nt primary key,
+    -> create table store_owner(^C
+mysql> create table store_owner(
+    -> s_id int primary key,
+    -> id int,
+    -> location varchar(20),
+    -> store_line varchar(20),
+    ->  FOREIGN KEY (id) REFERENCES user(id));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc store_owner;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| s_id       | int         | NO   | PRI | NULL    |       |
+| id         | int         | YES  | MUL | NULL    |       |
+| location   | varchar(20) | YES  |     | NULL    |       |
+| store_line | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> create table employes(
+    -> e_id int primary key,
+    -> id int,
+    -> s_id int,
+    -> salary int,
+    ->  FOREIGN KEY (s_id) REFERENCES store_owner(s_id),
+    ->  FOREIGN KEY (id) REFERENCES user(id));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc employes;
++--------+------+------+-----+---------+-------+
+| Field  | Type | Null | Key | Default | Extra |
++--------+------+------+-----+---------+-------+
+| e_id   | int  | NO   | PRI | NULL    |       |
+| id     | int  | YES  | MUL | NULL    |       |
+| s_id   | int  | YES  | MUL | NULL    |       |
+| salary | int  | YES  |     | NULL    |       |
++--------+------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> create table product(
+    ->  p_id int primary key,
+    -> name varchar(20));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table Inventory(
+    -> i_Id int primary key,
+    -> p_id int,
+    -> qty_price int,
+    ->  FOREIGN KEY (p_id) REFERENCES product(P_id));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc Inventory;
++-----------+------+------+-----+---------+-------+
+| Field     | Type | Null | Key | Default | Extra |
++-----------+------+------+-----+---------+-------+
+| i_Id      | int  | NO   | PRI | NULL    |       |
+| p_id      | int  | YES  | MUL | NULL    |       |
+| qty_price | int  | YES  |     | NULL    |       |
++-----------+------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> create table bill_inventory(
+    -> B_id int primary key,
+    -> B^C
+mysql> create table bill(
+    -> bill_id int primary key,
+    -> total_ammount int,
+    -> id int,
+    ->  FOREIGN KEY (id) REFERENCES user(id));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc bill;
++---------------+------+------+-----+---------+-------+
+| Field         | Type | Null | Key | Default | Extra |
++---------------+------+------+-----+---------+-------+
+| bill_id       | int  | NO   | PRI | NULL    |       |
+| total_ammount | int  | YES  |     | NULL    |       |
+| id            | int  | YES  | MUL | NULL    |       |
++---------------+------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> create table bill_inventory(
+    -> bill_id primary key,
+    -> ^C
+mysql> create table bill_inventory(
+    -> b_id int primary key;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> create table bill_inventory(
+    -> b_id int primary key,
+    -> bill_id int,
+    -> p_id int,
+    -> qyt_price int,
+    ->  FOREIGN KEY (bill_id) REFERENCES bill(bill_id),
+    ->  FOREIGN KEY (bill_id)^C
+mysql> create table bill_inventory(
+    -> b_id int primary key;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> create table bill_inventory(
+    -> b_id int primary key,
+    -> bill_id int,
+    -> p_id int,
+    -> qyt_price int,
+    ->  FOREIGN KEY (bill_id) REFERENCES bill(bill_id),
+    ->  FOREIGN KEY (p_id) REFERENCES product(p),
+    ->  FOREIGN KEY (p_id) REFERENCES product(p_id));
+ERROR 3734 (HY000): Failed to add the foreign key constraint. Missing column 'p' for constraint 'bill_inventory_ibfk_2' in the referenced table 'product'
+mysql> create table bill_inventory(
+    -> B_id int primary key,
+    -> bill_id int,
+    -> p_id int,
+    -> qyt_price int,
+    ->  FOREIGN KEY (p_id) REFERENCES product(p_id),
+    ->  FOREIGN KEY (bill_id) REFERENCES bill(bill_id));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc cill_inventory;
+ERROR 1146 (42S02): Table 'markets.cill_inventory' doesn't exist
+mysql> desc bill_inventory;
++-----------+------+------+-----+---------+-------+
+| Field     | Type | Null | Key | Default | Extra |
++-----------+------+------+-----+---------+-------+
+| B_id      | int  | NO   | PRI | NULL    |       |
+| bill_id   | int  | YES  | MUL | NULL    |       |
+| p_id      | int  | YES  | MUL | NULL    |       |
+| qyt_price | int  | YES  |     | NULL    |       |
++-----------+------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> ^A
